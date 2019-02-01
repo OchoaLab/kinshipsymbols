@@ -71,7 +71,7 @@
 % \begin{abstract}
 %   This package defines consistent mathematical symbols for statistical genetics, particularly relating to the kinship model and \Fst.
 %   In addition to providing a long list of symbols, the package has two options that alter the behavior of some of the most common symbols.
-%   Option |color| highlights genotypes (blue), kinship coefficients (dark green), and the standard ancestral allele frequency estimator (red), which is very useful for Beamer presentations.
+%   Option |color| highlights genotypes (blue), kinship coefficients (dark green), and the standard ancestral allele frequency estimator (red), which is useful for Beamer presentations.
 %   Option |noT| removes the ancestral population $T$ superscript from all symbols that contain it (for simpler presentations).
 % \end{abstract}
 %
@@ -255,8 +255,8 @@
 %     \begin{itemize}
 %     \item The genotypes (\xij) become blue (and also the cartoon genotype matrix drawn by |\sampleGenMat|).
 %       Highlighted since this is the observed data from which inferences are drawn.
-%     \item The kinship and inbreeding coefficients (\kt and \ft) become dark green.
-%       Highlighted since these are the unknown parameters we wish to estimate.
+%     \item The kinship coefficients (\kt) become dark green.
+%       Highlighted since these are the main unknown parameters we wish to estimate.
 %     \item The standard ancestral allele frequency estimator (\pith) becomes red.
 %       Highlighted since this is a particularly problematic estimator that leads to biases in common approaches.
 %     \end{itemize}
@@ -550,13 +550,10 @@
 %   The (total) inbreeding coefficient of individual $j$ (default).
 %   The optional argument allows setting other individuals (|\ft[k]| gives \ft[k] for individual $k$).
 %   This parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
-%   If the package option |color| is passed, then this symbol turns the color |kinColor| (default dark green).
 %    \begin{macrocode}
 \newcommand{\ft}[1][j]{%
   \ensuremath{%
-    \textcolor{kinColor}{%
-      f_{#1}\kinshipsymbols@T%
-    }%
+    f_{#1}\kinshipsymbols@T%
   }%
   \xspace%
 }%
