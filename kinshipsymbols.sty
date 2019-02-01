@@ -1,0 +1,344 @@
+%%
+%% This is file `kinshipsymbols.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% kinshipsymbols.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2019 by Alejandro Ochoa <https://ochoalab.github.io/>
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3c or later is part of all distributions of
+%% LaTeX version 2006/05/20 or later.
+%% 
+%% You can obtain the latest version of this package from
+%% 
+%%    http://github.com/alexviiia/kinshipsymbols
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kinshipsymbols}
+   [2019/02/01 v1.0 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
+\RequirePackage{amsmath}
+\RequirePackage{xspace}
+\RequirePackage{xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{multirow}
+\colorlet{genColor}{black}
+\colorlet{kinColor}{black}
+\colorlet{pithColor}{black}
+\newcommand{\kinshipsymbols@T}{^T}
+\newcommand{\kinshipsymbols@Ts}[1]{^{T,\text{#1}}}
+\DeclareOption{color}{
+  \colorlet{genColor}{blue}
+  \colorlet{kinColor}{green!50!black}
+  \colorlet{pithColor}{red}
+}
+\DeclareOption{noT}{
+  \renewcommand{\kinshipsymbols@T}{}
+  \renewcommand{\kinshipsymbols@Ts}[1]{^{\text{#1}}}
+}
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\round}{round}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\logit}{logit}
+\newcommand{\xij}[1][j]{%
+  \ensuremath{%
+    \textcolor{genColor}{%
+      x_{i#1}%
+    }%
+  }%
+  \xspace%
+}%
+\newcommand{\pit}{%
+  \ensuremath{%
+    p_i\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+\newcommand{\pith}{%
+  \ensuremath{%
+    \textcolor{pithColor}{%
+      \hat{p}_i\kinshipsymbols@T%
+    }%
+  }%
+  \xspace%
+}%
+\newcommand{\Fst}{%
+  \ensuremath{%
+    F_{\text{ST}}%
+  }%
+  \xspace%
+}%
+\newcommand{\Fit}{%
+  \ensuremath{%
+    F_{\text{IT}}%
+  }%
+  \xspace%
+}%
+\newcommand{\Fis}{%
+  \ensuremath{%
+    F_{\text{IS}}%
+  }%
+  \xspace%
+}%
+\newcommand{\f}[2]{%
+  \ensuremath{%
+    f^{#1}_{#2}%
+  }%
+  \xspace%
+}%
+\newcommand{\ft}[1][j]{%
+  \ensuremath{%
+    \textcolor{kinColor}{%
+      f_{#1}\kinshipsymbols@T%
+    }%
+  }%
+  \xspace%
+}%
+\newcommand{\fl}[1][j]{%
+  \ensuremath{%
+    f_{#1}^{L_{#1}}%
+  }%
+  \xspace%
+}%
+\newcommand{\fs}[1][j]{%
+  \ensuremath{%
+    f_{L_{#1}}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+\newcommand{\kt}[1][k]{%
+  \ensuremath{%
+    \textcolor{kinColor}{%
+      \varphi_{j#1}\kinshipsymbols@T%
+    }%
+  }%
+  \xspace%
+}%
+\newcommand{\kl}{%
+  \ensuremath{%
+    \varphi_{jk}^{L_{jk}}%
+  }%
+  \xspace%
+}%
+\newcommand{\ks}{%
+  \ensuremath{%
+    f_{L_{jk}}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+\newcommand{\fpw}[1][j]{%
+  \f{L_{jk}}{L_{#1}}%
+}%
+\newcommand{\Rst}{%
+  \ensuremath{%
+    R_{\text{ST}}%
+  }%
+  \xspace%
+}%
+\newcommand{\PhiSt}{%
+  \ensuremath{%
+    \phi_{\text{ST}}%
+  }%
+  \xspace%
+}%
+\newcommand{\Gst}{%
+  \ensuremath{%
+    G_{\text{ST}}%
+  }%
+  \xspace%
+}%
+\newcommand{\GstPrime}{%
+  \ensuremath{%
+    G_{\text{ST}}'%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatSample}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST},i}^{\text{sample}}%
+  }%
+  \xspace%
+}%
+\newcommand{\toas}{%
+  \xrightarrow[m \rightarrow \infty]{\text{a.s.}}
+}%
+\newcommand{\toN}[1][n]{%
+  \xrightarrow[#1 \rightarrow \infty]{}%
+}%
+\newcommand{\toasNM}{%
+  \xrightarrow[n,m \rightarrow \infty]{\text{a.s.}}%
+}%
+\newcommand{\FstHatIs}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{indep}}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatWc}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{WC}}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatHudson}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{Hudson}}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatHudsonK}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{HudsonK}}%
+  }%
+  \xspace%
+}%
+\newcommand{\ktHat}{%
+  \ensuremath{%
+    \hat{\varphi}_{jk}\kinshipsymbols@Ts{std}%
+  }%
+  \xspace%
+}%
+\newcommand{\ftHat}{%
+  \ensuremath{%
+    \hat{f}_j\kinshipsymbols@Ts{std}%
+  }%
+  \xspace%
+}%
+\newcommand{\ftHatII}{%
+  \ensuremath{%
+    \hat{f}_j\kinshipsymbols@Ts{stdII}%
+  }%
+  \xspace%
+}%
+\newcommand{\ftHatIII}{%
+  \ensuremath{%
+    \hat{f}_j\kinshipsymbols@Ts{stdIII}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHat}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{std}}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatPrime}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}'%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatPrimeDbl}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}''%
+  }%
+  \xspace%
+}%
+\newcommand{\ktHatPreadj}[1][k]{%
+  \ensuremath{%
+    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{preadj}%
+  }%
+  \xspace%
+}%
+\newcommand{\ktHatPreadjMin}{%
+  \ensuremath{%
+    \hat{\varphi}_{\text{min}}\kinshipsymbols@Ts{preadj}%
+  }%
+  \xspace%
+}%
+\newcommand{\ktHatNew}[1][k]{%
+  \ensuremath{%
+    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{new}%
+  }%
+  \xspace%
+}%
+\newcommand{\ftHatNew}[1][j]{%
+  \ensuremath{%
+    \hat{f}_{#1}\kinshipsymbols@Ts{new}%
+  }%
+  \xspace%
+}%
+\newcommand{\FstHatNew}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{new}}%
+  }%
+  \xspace%
+}%
+\newcommand{\AMin}{%
+  \ensuremath{%
+    A_{\text{Emin}}%
+  }%
+  \xspace%
+}%
+\newcommand{\AMinHat}{%
+  \ensuremath{%
+    \hat{A}_{\text{Emin}}%
+  }%
+  \xspace%
+}%
+\newcommand{\mav}{%
+  \ensuremath{%
+    \overline{p(1-p)}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+\newcommand{\klHatBeagle}{%
+  \ensuremath{%
+    \hat{\varphi}_{jk}^{L_{jk},\text{beagle}}%
+  }%
+  \xspace%
+}%
+\newcommand{\flHatBeagle}[1][j]{%
+  \ensuremath{%
+    \hat{f}_{#1}^{L_{#1},\text{beagle}}%
+  }%
+  \xspace%
+}%
+\makeatletter
+\@ifclassloaded{beamer}{%
+  \patchcmd\@cline
+      {\arrayrulewidth\hfill}% search
+      {\arrayrulewidth\hfill\kern\z@}% replace
+      {}% success
+      {\errmessage{Patching \string\@cline\space failed}}% failure
+}{%
+  % nothing to do here?
+}
+\makeatother
+\newcommand{\sampleGenMat}{%
+  \begin{tabular}{cc}%
+    & Individuals \\%
+    \arrayrulecolor{genColor}\cline{2-2}%
+    \multirow{10}{*}{\rotatebox[origin=c]{90}{Loci}}%
+    & \multicolumn{1}{|l|}{0 2 2 1 1 0 1} \\%
+    & \multicolumn{1}{|l|}{0 2 1 0 1 } \\%
+    & \multicolumn{1}{|l|}{2 ...} \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    & \multicolumn{1}{|l|}{ } \\%
+    \arrayrulecolor{genColor}\cline{2-2}%
+    & \\%
+    & $\mathbf{\textcolor{genColor}{X}}$ \\%
+  \end{tabular}%
+}%
+\endinput
+%%
+%% End of file `kinshipsymbols.sty'.

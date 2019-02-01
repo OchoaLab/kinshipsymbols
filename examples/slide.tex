@@ -1,0 +1,50 @@
+% this is the main "sample" slide shared by all the examples
+% Color and noT variants are set in their respective preambles
+
+\begin{document}
+  \begin{frame}
+    \begin{columns}[T]
+      \begin{column}{3.3cm}
+        \sampleGenMat
+      \end{column}
+      \begin{column}{6cm}
+        \begin{align*}
+          \E[\xij|T] &= 2 \pit
+          , \\
+          \Var(\xij|T) &= 2 \pit \left( 1-\pit \right) (1 + \ft)
+          , \\
+          \Cov(\xij,\xij[k]|T) &= 4 \pit \left( 1-\pit \right) \kt
+          , \\
+          \left( 1-\Fit \right) &= \left( 1-\Fis \right) \left( 1-\Fst \right)
+          , \\
+          \left( 1-\ft \right) &= \left( 1-\fl \right) \left( 1-\fs \right)
+          , \\
+          \Fst &= \sum_{j=1}^n w_j \fs
+          , \\
+          \pith &= \frac{1}{2}\sum_{j=1}^n w_j \xij
+          , \\
+          \ktHatNew &\toas \kt
+          .
+        \end{align*}
+      \end{column}
+      \begin{column}{4.5cm}
+        % line breaks placed so vanilla and noT versions have symbols on roughly same locations (without skipping lines oddly)
+        $\E, \Var, \Cov,$ \\
+        $\round, \sgn, \logit,$ \\
+        $\toas, \toN, \toasNM,$ \\
+        \xij, \pit, \pith, \Fst, \Fit, \Fis, \\
+        \f{A}{B}, \ft, \fl, \fs,
+        \kt, \kl, \\ \ks,
+        \fpw,
+        \Rst, \PhiSt, \Gst, \\ \GstPrime, \FstHatSample,
+        \FstHatIs, \FstHatWc, \\ \FstHatHudson, \FstHatHudsonK,
+        \ktHat, \\ \ftHat, \ftHatII, \ftHatIII, \\
+        \FstHat, \FstHatPrime, \FstHatPrimeDbl,
+        \ktHatPreadj, \\ \ktHatPreadjMin, \ktHatNew, \ftHatNew, \\ \FstHatNew,
+        \klHatBeagle, \flHatBeagle, \\
+        \mav, \AMin, \AMinHat
+        .
+      \end{column}
+    \end{columns}
+  \end{frame}
+\end{document}
