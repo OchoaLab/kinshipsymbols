@@ -18,3 +18,7 @@ rm *.log
 rm *.out
 rm *.toc
 rm *~
+
+# create PNG of one version...
+# this is the command used to get the image preview used on GitHub
+convert -density 300 test-color.pdf -resize '800x600' -flatten test-color.png
