@@ -10,7 +10,7 @@ rm kinshipsymbols.sty
 latex kinshipsymbols.ins
 
 cd ./examples
-./make.sh
+bash ./make.sh
 cd ..
 
 pdflatex kinshipsymbols.dtx
@@ -31,5 +31,4 @@ rm *.ilg
 rm *.ind
 rm *.log
 rm *.toc
-
-#rm *.out
+rm *.out
