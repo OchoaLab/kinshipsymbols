@@ -37,7 +37,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{355}
+% \CheckSum{373}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -326,24 +326,32 @@
 % Then we define the special colors we want to use (in a way that is easy to tweak later if needed).
 % Note that by default these colors are all black.
 % 
-% \begin{macro}{genColor}
-%   This ``genotype color'' is black by default, turns blue if the |color| package option is set.
+% \begin{macro}{\ifcolor}
+%   LaTeX boolean for whether color is a true option or not
 %    \begin{macrocode}
-\colorlet{genColor}{black}
+\newif\ifcolor%
+\colorfalse% default is false
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{genColor}
+%   The hardcoded ``genotype color'' is blue, applied if the |color| package option is set.
+%    \begin{macrocode}
+\colorlet{genColor}{blue}
 %    \end{macrocode}
 % \end{macro}
 % 
 % \begin{macro}{kinColor}
-%   This ``kinship color'' is black by default, turns a dark green if the |color| package option is set.
+%   The hardcoded ``kinship color'' is a dark green, applied if the |color| package option is set.
 %    \begin{macrocode}
-\colorlet{kinColor}{black}
+\colorlet{kinColor}{green!50!black}
 %    \end{macrocode}
 % \end{macro}
 % 
 % \begin{macro}{pithColor}
-%   This ``|\pith| color'' is black by default, turns red if the |color| package option is set.
+%   The hardcoded ``|\pith| color'' is red, applied if the |color| package option is set.
 %    \begin{macrocode}
-\colorlet{pithColor}{black}
+\colorlet{pithColor}{red}
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -368,9 +376,7 @@
 % This turns on colors if the |color| package option is set.
 %    \begin{macrocode}
 \DeclareOption{color}{
-  \colorlet{genColor}{blue}
-  \colorlet{kinColor}{green!50!black}
-  \colorlet{pithColor}{red}
+  \colortrue
 }
 %    \end{macrocode}
 % 
@@ -445,9 +451,9 @@
 %    \begin{macrocode}
 \newcommand{\xij}[1][j]{%
   \ensuremath{%
-    \textcolor{genColor}{%
+    \ifcolor \textcolor{genColor}{ \fi%
       x_{i#1}%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -478,9 +484,9 @@
 %    \begin{macrocode}
 \newcommand{\pith}{%
   \ensuremath{%
-    \textcolor{pithColor}{%
+    \ifcolor \textcolor{pithColor}{ \fi%
       \hat{p}_i\kinshipsymbols@T%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -601,9 +607,9 @@
 %    \begin{macrocode}
 \newcommand{\kt}[1][k]{%
   \ensuremath{%
-    \textcolor{kinColor}{%
+    \ifcolor \textcolor{kinColor}{ \fi%
       \varphi_{j#1}\kinshipsymbols@T%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -1069,7 +1075,8 @@
 \newcommand{\sampleGenMat}{%
   \begin{tabular}{cc}%
     & Individuals \\%
-    \arrayrulecolor{genColor}\cline{2-2}%
+    \ifcolor \arrayrulecolor{genColor} \fi% % gets applied to whole table
+    \cline{2-2}%
     \multirow{10}{*}{\rotatebox[origin=c]{90}{Loci}}%
     & \multicolumn{1}{|l|}{0 2 2 1 1 0 1} \\%
     & \multicolumn{1}{|l|}{0 2 1 0 1 } \\%
@@ -1081,9 +1088,13 @@
     & \multicolumn{1}{|l|}{ } \\%
     & \multicolumn{1}{|l|}{ } \\%
     & \multicolumn{1}{|l|}{ } \\%
-    \arrayrulecolor{genColor}\cline{2-2}%
+    \cline{2-2}%
     & \\%
-    & $\mathbf{\textcolor{genColor}{X}}$ \\%
+    & $\mathbf{
+      \ifcolor \textcolor{genColor}{ \fi%
+      X
+      \ifcolor } \fi%
+      }$ \\%
   \end{tabular}%
 }%
 %    \end{macrocode}

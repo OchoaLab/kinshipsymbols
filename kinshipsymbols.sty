@@ -32,15 +32,15 @@
 \RequirePackage{xcolor}
 \RequirePackage{colortbl}
 \RequirePackage{multirow}
-\colorlet{genColor}{black}
-\colorlet{kinColor}{black}
-\colorlet{pithColor}{black}
+\newif\ifcolor%
+\colorfalse% default is false
+\colorlet{genColor}{blue}
+\colorlet{kinColor}{green!50!black}
+\colorlet{pithColor}{red}
 \newcommand{\kinshipsymbols@T}{^T}
 \newcommand{\kinshipsymbols@Ts}[1]{^{T,\text{#1}}}
 \DeclareOption{color}{
-  \colorlet{genColor}{blue}
-  \colorlet{kinColor}{green!50!black}
-  \colorlet{pithColor}{red}
+  \colortrue
 }
 \DeclareOption{noT}{
   \renewcommand{\kinshipsymbols@T}{}
@@ -56,9 +56,9 @@
 \DeclareMathOperator{\logit}{logit}
 \newcommand{\xij}[1][j]{%
   \ensuremath{%
-    \textcolor{genColor}{%
+    \ifcolor \textcolor{genColor}{ \fi%
       x_{i#1}%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -70,9 +70,9 @@
 }%
 \newcommand{\pith}{%
   \ensuremath{%
-    \textcolor{pithColor}{%
+    \ifcolor \textcolor{pithColor}{ \fi%
       \hat{p}_i\kinshipsymbols@T%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -120,9 +120,9 @@
 }%
 \newcommand{\kt}[1][k]{%
   \ensuremath{%
-    \textcolor{kinColor}{%
+    \ifcolor \textcolor{kinColor}{ \fi%
       \varphi_{j#1}\kinshipsymbols@T%
-    }%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
@@ -320,7 +320,8 @@
 \newcommand{\sampleGenMat}{%
   \begin{tabular}{cc}%
     & Individuals \\%
-    \arrayrulecolor{genColor}\cline{2-2}%
+    \ifcolor \arrayrulecolor{genColor} \fi% % gets applied to whole table
+    \cline{2-2}%
     \multirow{10}{*}{\rotatebox[origin=c]{90}{Loci}}%
     & \multicolumn{1}{|l|}{0 2 2 1 1 0 1} \\%
     & \multicolumn{1}{|l|}{0 2 1 0 1 } \\%
@@ -332,9 +333,13 @@
     & \multicolumn{1}{|l|}{ } \\%
     & \multicolumn{1}{|l|}{ } \\%
     & \multicolumn{1}{|l|}{ } \\%
-    \arrayrulecolor{genColor}\cline{2-2}%
+    \cline{2-2}%
     & \\%
-    & $\mathbf{\textcolor{genColor}{X}}$ \\%
+    & $\mathbf{
+      \ifcolor \textcolor{genColor}{ \fi%
+      X
+      \ifcolor } \fi%
+      }$ \\%
   \end{tabular}%
 }%
 \endinput
