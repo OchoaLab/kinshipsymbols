@@ -37,7 +37,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{373}
+% \CheckSum{345}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -143,6 +143,9 @@
 %         \hline
 %         Command & Symbol & Description \\
 %         \hline
+%         |\ktHatNamed{example}| & \ktHatNamed{example} & Named kinship estimator \\
+%         |\ftHatNamed{example}| & \ftHatNamed{example} & Named inbreeding estimator \\
+%         \hline
 %         |\ktHat| & \ktHat & Standard kinship estimator \\
 %         |\ftHat| & \ftHat & Standard inbreeding estimator (I) \\
 %         |\ftHatII| & \ftHatII & Alternate inbreeding estimator (II) \\
@@ -168,7 +171,9 @@
 %         \hline
 %         Command & Symbol & Description \\
 %         \hline
-%         |\FstHatSample| & \FstHatSample & Sample \Fst estimator \\
+%         |\FstHatSample| & \FstHatSample & Sample \Fst estimator (one locus) \\
+%         |\FstHatNamed{example}| & \FstHatNamed{example} & Named \Fst estimator \\
+%         \hline
 %         |\FstHatWc| & \FstHatWc & Weir-Cockerham \Fst estimator \\
 %         |\FstHatHudson| & \FstHatHudson & Hudson Pairwise \Fst estimator \\
 %         |\FstHatHudsonK| & \FstHatHudsonK & Generalized Hudson \Fst estimator \\
@@ -324,10 +329,9 @@
 % \subsection{Initializing variables, modify depending on options}
 % 
 % Then we define the special colors we want to use (in a way that is easy to tweak later if needed).
-% Note that by default these colors are all black.
 % 
 % \begin{macro}{\ifcolor}
-%   LaTeX boolean for whether color is a true option or not
+%   LaTeX boolean for whether color option is on or off.
 %    \begin{macrocode}
 \newif\ifcolor%
 \colorfalse% default is false
@@ -757,16 +761,25 @@
 %
 % \subsection{\Fst estimators for independent subpopulations}
 %
+% \begin{macro}{\FstHatNamed}
+%   \FstHatNamed{example}:
+%   Base command for a named \Fst estimator.
+%   Takes on one mandatory argument---the name of the estimator---which is rendered as text.
+%    \begin{macrocode}
+\newcommand{\FstHatNamed}[1]{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}^{\text{#1}}%
+  }%
+  \xspace%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\FstHatIs}
 %   \FstHatIs:
 %   Asymptotic \Fst estimator for independent subpopulations.
 %    \begin{macrocode}
-\newcommand{\FstHatIs}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{indep}}%
-  }%
-  \xspace%
-}%
+\newcommand{\FstHatIs}{\FstHatNamed{indep}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -774,12 +787,7 @@
 %   \FstHatWc:
 %   Weir-Cockerham \Fst estimator.
 %    \begin{macrocode}
-\newcommand{\FstHatWc}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{WC}}%
-  }%
-  \xspace%
-}%
+\newcommand{\FstHatWc}{\FstHatNamed{WC}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -787,12 +795,7 @@
 %   \FstHatHudson:
 %   Hudson pairwise \Fst estimator.
 %    \begin{macrocode}
-\newcommand{\FstHatHudson}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{Hudson}}%
-  }%
-  \xspace%
-}%
+\newcommand{\FstHatHudson}{\FstHatNamed{Hudson}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -800,25 +803,48 @@
 %   \FstHatHudsonK:
 %   Generalized Hudson \Fst estimator (for $K$ subpopulations).
 %    \begin{macrocode}
-\newcommand{\FstHatHudsonK}{%
+\newcommand{\FstHatHudsonK}{\FstHatNamed{HudsonK}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Estimators based on the standard kinship}
+%
+% \begin{macro}{\ktHatNamed}
+%   \ktHatNamed{example}:
+%   A generic named kinship estimator for individuals $j$ and $k$ (default).
+%   Mandatory argument is the name, rendered as text.
+%   The optional argument allows setting another second individual (|\ktHatNamed[l]{example}| gives \ktHatNamed[l]{example} for a second individual $l$).
+%   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
+%    \begin{macrocode}
+\newcommand{\ktHatNamed}[2][k]{%
   \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{HudsonK}}%
+    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{#2}%
   }%
   \xspace%
 }%
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{Estimators based on the standard kinship}
-%
 % \begin{macro}{\ktHat}
 %   \ktHat:
-%   Standard kinship estimator for individuals $j$ and $k$.
+%   Standard kinship estimator for individuals $j$ and $k$ (default).
+%   The optional argument allows setting another second individual (|\ktHat[l]| gives \ktHat[l] for a second individual $l$).
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ktHat}{%
+\newcommand{\ktHat}[1][k]{\ktHatNamed[#1]{std}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ftHatNamed}
+%   \ftHatNamed{example}:
+%   Named inbreeding coefficient estimator for individual $j$ (default).
+%   Mandatory argument is the name, rendered as text.
+%   The optional argument allows setting another individual (|\ftHatNamed[k]{example}| gives \ftHatNamed[k]{example} for individual $k$).
+%   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
+%    \begin{macrocode}
+\newcommand{\ftHatNamed}[2][j]{%
   \ensuremath{%
-    \hat{\varphi}_{jk}\kinshipsymbols@Ts{std}%
+    \hat{f}_{#1}\kinshipsymbols@Ts{#2}%
   }%
   \xspace%
 }%
@@ -830,12 +856,7 @@
 %   Standard inbreeding coefficient estimator (I) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHat}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{std}%
-  }%
-  \xspace%
-}%
+\newcommand{\ftHat}{\ftHatNamed{std}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -844,12 +865,7 @@
 %   Alternate inbreeding coefficient estimator (II) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHatII}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{stdII}%
-  }%
-  \xspace%
-}%
+\newcommand{\ftHatII}{\ftHatNamed{stdII}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -858,12 +874,7 @@
 %   Alternate inbreeding coefficient estimator (III) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHatIII}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{stdIII}%
-  }%
-  \xspace%
-}%
+\newcommand{\ftHatIII}{\ftHatNamed{stdIII}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -871,12 +882,7 @@
 %   \FstHat:
 %   Standard \Fst estimator (based on the standard kinship estimator).
 %    \begin{macrocode}
-\newcommand{\FstHat}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{std}}%
-  }%
-  \xspace%
-}%
+\newcommand{\FstHat}{\FstHatNamed{std}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -914,12 +920,7 @@
 %   The optional argument allows setting another second individual (|\ktHatPreadj[l]| gives \ktHatPreadj[l] for a second individual $l$).
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ktHatPreadj}[1][k]{%
-  \ensuremath{%
-    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{preadj}%
-  }%
-  \xspace%
-}%
+\newcommand{\ktHatPreadj}[1][k]{\ktHatNamed[#1]{preadj}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -942,12 +943,7 @@
 %   The optional argument allows setting another second individual (|\ktHatNew[l]| gives \ktHatNew[l] for a second individual $l$).
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ktHatNew}[1][k]{%
-  \ensuremath{%
-    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{new}%
-  }%
-  \xspace%
-}%
+\newcommand{\ktHatNew}[1][k]{\ktHatNamed[#1]{new}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -957,12 +953,7 @@
 %   The optional argument allows setting other individuals (|\ftHatNew[k]| gives \ftHatNew[k] for individual $k$).
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHatNew}[1][j]{%
-  \ensuremath{%
-    \hat{f}_{#1}\kinshipsymbols@Ts{new}%
-  }%
-  \xspace%
-}%
+\newcommand{\ftHatNew}[1][j]{\ftHatNamed[#1]{new}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -970,12 +961,7 @@
 %   \FstHatNew:
 %   New \Fst estimator.
 %    \begin{macrocode}
-\newcommand{\FstHatNew}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{new}}%
-  }%
-  \xspace%
-}%
+\newcommand{\FstHatNew}{\FstHatNamed{new}}
 %    \end{macrocode}
 % \end{macro}
 %

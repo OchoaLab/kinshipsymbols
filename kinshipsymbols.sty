@@ -180,60 +180,33 @@
 \newcommand{\toasNM}{%
   \xrightarrow[n,m \rightarrow \infty]{\text{a.s.}}%
 }%
-\newcommand{\FstHatIs}{%
+\newcommand{\FstHatNamed}[1]{%
   \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{indep}}%
+    \hat{F}_{\text{ST}}^{\text{#1}}%
   }%
   \xspace%
 }%
-\newcommand{\FstHatWc}{%
+\newcommand{\FstHatIs}{\FstHatNamed{indep}}
+\newcommand{\FstHatWc}{\FstHatNamed{WC}}
+\newcommand{\FstHatHudson}{\FstHatNamed{Hudson}}
+\newcommand{\FstHatHudsonK}{\FstHatNamed{HudsonK}}
+\newcommand{\ktHatNamed}[2][k]{%
   \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{WC}}%
+    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{#2}%
   }%
   \xspace%
 }%
-\newcommand{\FstHatHudson}{%
+\newcommand{\ktHat}[1][k]{\ktHatNamed[#1]{std}}
+\newcommand{\ftHatNamed}[2][j]{%
   \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{Hudson}}%
+    \hat{f}_{#1}\kinshipsymbols@Ts{#2}%
   }%
   \xspace%
 }%
-\newcommand{\FstHatHudsonK}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{HudsonK}}%
-  }%
-  \xspace%
-}%
-\newcommand{\ktHat}{%
-  \ensuremath{%
-    \hat{\varphi}_{jk}\kinshipsymbols@Ts{std}%
-  }%
-  \xspace%
-}%
-\newcommand{\ftHat}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{std}%
-  }%
-  \xspace%
-}%
-\newcommand{\ftHatII}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{stdII}%
-  }%
-  \xspace%
-}%
-\newcommand{\ftHatIII}{%
-  \ensuremath{%
-    \hat{f}_j\kinshipsymbols@Ts{stdIII}%
-  }%
-  \xspace%
-}%
-\newcommand{\FstHat}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{std}}%
-  }%
-  \xspace%
-}%
+\newcommand{\ftHat}{\ftHatNamed{std}}
+\newcommand{\ftHatII}{\ftHatNamed{stdII}}
+\newcommand{\ftHatIII}{\ftHatNamed{stdIII}}
+\newcommand{\FstHat}{\FstHatNamed{std}}
 \newcommand{\FstHatPrime}{%
   \ensuremath{%
     \hat{F}_{\text{ST}}'%
@@ -246,36 +219,16 @@
   }%
   \xspace%
 }%
-\newcommand{\ktHatPreadj}[1][k]{%
-  \ensuremath{%
-    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{preadj}%
-  }%
-  \xspace%
-}%
+\newcommand{\ktHatPreadj}[1][k]{\ktHatNamed[#1]{preadj}}
 \newcommand{\ktHatPreadjMin}{%
   \ensuremath{%
     \hat{\varphi}_{\text{min}}\kinshipsymbols@Ts{preadj}%
   }%
   \xspace%
 }%
-\newcommand{\ktHatNew}[1][k]{%
-  \ensuremath{%
-    \hat{\varphi}_{j#1}\kinshipsymbols@Ts{new}%
-  }%
-  \xspace%
-}%
-\newcommand{\ftHatNew}[1][j]{%
-  \ensuremath{%
-    \hat{f}_{#1}\kinshipsymbols@Ts{new}%
-  }%
-  \xspace%
-}%
-\newcommand{\FstHatNew}{%
-  \ensuremath{%
-    \hat{F}_{\text{ST}}^{\text{new}}%
-  }%
-  \xspace%
-}%
+\newcommand{\ktHatNew}[1][k]{\ktHatNamed[#1]{new}}
+\newcommand{\ftHatNew}[1][j]{\ftHatNamed[#1]{new}}
+\newcommand{\FstHatNew}{\FstHatNamed{new}}
 \newcommand{\AMin}{%
   \ensuremath{%
     A_{\text{Emin}}%
