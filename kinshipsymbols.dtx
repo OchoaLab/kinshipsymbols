@@ -37,7 +37,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{345}
+% \CheckSum{349}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -156,7 +156,8 @@
 %         |\ftHatNew| & \ftHatNew & New inbreeding estimator \\
 %         |\klHatBeagle| & \klHatBeagle & Beagle-based kinship estimator \\
 %         |\flHatBeagle| & \flHatBeagle & Beagle-based inbreeding estimator \\
-%         |\AMin| & \AMin & Asymptotic minimum value of $A_{jk}$ \\
+%         |\Ajk| & \Ajk & New kinship-related statistic \\
+%         |\AMin| & \AMin & Asymptotic minimum value of \Ajk \\
 %         |\AMinHat| & \AMinHat & Estimator of \AMin \\
 %         \hline
 %       \end{tabular}
@@ -965,9 +966,23 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\Ajk}
+%   \Ajk:
+%   A new statistic proportional in expectation to $\kt-1$ for the pair of individuals $j$ and $k$ (default).
+%   The optional argument allows setting another second individual (|\Ajk[l]| gives \Ajk[l] for a second individual $l$).
+%    \begin{macrocode}
+\newcommand{\Ajk}[1][k]{%
+  \ensuremath{%
+    A_{j#1}%
+  }%
+  \xspace%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\AMin}
 %   \AMin:
-%   Minimum value of the expectation of the $A_{jk}$ statistics across all pairs of individuals.
+%   Minimum value of the expectation of \Ajk across all pairs of individuals.
 %    \begin{macrocode}
 \newcommand{\AMin}{%
   \ensuremath{%
