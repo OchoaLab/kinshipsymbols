@@ -146,10 +146,10 @@
 %         |\ktHatNamed{example}| & \ktHatNamed{example} & Named kinship estimator \\
 %         |\ftHatNamed{example}| & \ftHatNamed{example} & Named inbreeding estimator \\
 %         \hline
-%         |\ktHat| & \ktHat & Standard kinship estimator \\
-%         |\ftHat| & \ftHat & Standard inbreeding estimator (I) \\
-%         |\ftHatII| & \ftHatII & Alternate inbreeding estimator (II) \\
-%         |\ftHatIII| & \ftHatIII & Alternate inbreeding estimator (III) \\
+%         |\ktHatStd| & \ktHatStd & Standard kinship estimator \\
+%         |\ftHatStd| & \ftHatStd & Standard inbreeding estimator (I) \\
+%         |\ftHatStdII| & \ftHatStdII & Alternate inbreeding estimator (II) \\
+%         |\ftHatStdIII| & \ftHatStdIII & Alternate inbreeding estimator (III) \\
 %         |\ktHatNew| & \ktHatNew & New kinship estimator \\
 %         |\ftHatNew| & \ftHatNew & New inbreeding estimator \\
 %         |\klHatBeagle| & \klHatBeagle & Beagle-based kinship estimator \\
@@ -176,9 +176,9 @@
 %         |\FstHatHudson| & \FstHatHudson & Hudson Pairwise \Fst estimator \\
 %         |\FstHatHudsonK| & \FstHatHudsonK & Generalized Hudson \Fst estimator \\
 %         |\FstHatIs| & \FstHatIs & Asymptotic \Fst estimator for indep. subpops. \\
-%         |\FstHat| & \FstHat & Standard \Fst estimator (based on \ktHat) \\
-%         |\FstHatPrime| & \FstHatPrime & Standard \Fst estimator adjusted 1 \\
-%         |\FstHatPrimeDbl| & \FstHatPrimeDbl & Standard \Fst estimator adjusted 2 \\
+%         |\FstHatStd| & \FstHatStd & Standard \Fst estimator (based on \ktHatStd) \\
+%         |\FstHatStdPrime| & \FstHatStdPrime & Standard \Fst estimator adjusted 1 \\
+%         |\FstHatStdPrimeDbl| & \FstHatStdPrimeDbl & Standard \Fst estimator adjusted 2 \\
 %         |\FstHatNew| & \FstHatNew & New \Fst estimator \\
 %         \hline
 %       \end{tabular}
@@ -266,7 +266,7 @@
 %     \end{itemize}
 % \item \cref{fig:noT}: |\usepackage[noT]{kinshipsymbols}| version.
 %       Same as the vanilla version except the ancestral population $T$ is omitted in the superscript of several symbols
-%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHat, \ftHat, \ftHatII, \ftHatIII, \ktHatNew, \ftHatNew, and \mav).
+%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHatStd, \ftHatStd, \ftHatStdII, \ftHatStdIII, \ktHatNew, \ftHatNew, and \mav).
 %       This option is provided to simplify the heavy notation in a context where $T$ is implicit or fixed.
 % \item \cref{fig:colorNoT}: |\usepackage[color,noT]{kinshipsymbols}| version.
 %       A straightforward combination of the |color| and |noT| options described above.
@@ -823,13 +823,13 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\ktHat}
-%   \ktHat:
+% \begin{macro}{\ktHatStd}
+%   \ktHatStd:
 %   Standard kinship estimator for individuals $j$ and $k$ (default).
-%   The optional argument allows setting another second individual (|\ktHat[l]| gives \ktHat[l] for a second individual $l$).
+%   The optional argument allows setting another second individual (|\ktHatStd[l]| gives \ktHatStd[l] for a second individual $l$).
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ktHat}[1][k]{\ktHatNamed[#1]{std}}
+\newcommand{\ktHatStd}[1][k]{\ktHatNamed[#1]{std}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -849,46 +849,46 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\ftHat}
-%   \ftHat:
+% \begin{macro}{\ftHatStd}
+%   \ftHatStd:
 %   Standard inbreeding coefficient estimator (I) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHat}{\ftHatNamed{std}}
+\newcommand{\ftHatStd}{\ftHatNamed{std}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\ftHatII}
-%   \ftHatII:
+% \begin{macro}{\ftHatStdII}
+%   \ftHatStdII:
 %   Alternate inbreeding coefficient estimator (II) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHatII}{\ftHatNamed{stdII}}
+\newcommand{\ftHatStdII}{\ftHatNamed{stdII}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\ftHatIII}
-%   \ftHatIII:
+% \begin{macro}{\ftHatStdIII}
+%   \ftHatStdIII:
 %   Alternate inbreeding coefficient estimator (III) for individual $j$.
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
-\newcommand{\ftHatIII}{\ftHatNamed{stdIII}}
+\newcommand{\ftHatStdIII}{\ftHatNamed{stdIII}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\FstHat}
-%   \FstHat:
+% \begin{macro}{\FstHatStd}
+%   \FstHatStd:
 %   Standard \Fst estimator (based on the standard kinship estimator).
 %    \begin{macrocode}
-\newcommand{\FstHat}{\FstHatNamed{std}}
+\newcommand{\FstHatStd}{\FstHatNamed{std}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\FstHatPrime}
-%   \FstHatPrime:
+% \begin{macro}{\FstHatStdPrime}
+%   \FstHatStdPrime:
 %   Standard \Fst estimator adjusted 1.
 %    \begin{macrocode}
-\newcommand{\FstHatPrime}{%
+\newcommand{\FstHatStdPrime}{%
   \ensuremath{%
     \hat{F}_{\text{ST}}'%
   }%
@@ -897,11 +897,11 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\FstHatPrimeDbl}
-%   \FstHatPrimeDbl:
+% \begin{macro}{\FstHatStdPrimeDbl}
+%   \FstHatStdPrimeDbl:
 %   Standard \Fst estimator adjusted 2.
 %    \begin{macrocode}
-\newcommand{\FstHatPrimeDbl}{%
+\newcommand{\FstHatStdPrimeDbl}{%
   \ensuremath{%
     \hat{F}_{\text{ST}}''%
   }%
