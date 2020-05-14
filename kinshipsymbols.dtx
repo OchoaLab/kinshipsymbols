@@ -37,7 +37,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{339}
+% \CheckSum{347}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -151,6 +151,7 @@
 %         |\ftHatStdII| & \ftHatStdII & Alternate inbreeding estimator (II) \\
 %         |\ftHatStdIII| & \ftHatStdIII & Alternate inbreeding estimator (III) \\
 %         |\ktHatNew| & \ktHatNew & New kinship estimator \\
+%         |\ktHatNewMin| & \ktHatNewMin & Estimator of the asymptotic minimum \ktHatNew \\
 %         |\ftHatNew| & \ftHatNew & New inbreeding estimator \\
 %         |\klHatBeagle| & \klHatBeagle & Beagle-based kinship estimator \\
 %         |\flHatBeagle| & \flHatBeagle & Beagle-based inbreeding estimator \\
@@ -266,7 +267,7 @@
 %     \end{itemize}
 % \item \cref{fig:noT}: |\usepackage[noT]{kinshipsymbols}| version.
 %       Same as the vanilla version except the ancestral population $T$ is omitted in the superscript of several symbols
-%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHatStd, \ftHatStd, \ftHatStdII, \ftHatStdIII, \ktHatNew, \ftHatNew, and \mav).
+%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHatStd, \ftHatStd, \ftHatStdII, \ftHatStdIII, \ktHatNew, \ktHatNewMin, \ftHatNew, and \mav).
 %       This option is provided to simplify the heavy notation in a context where $T$ is implicit or fixed.
 % \item \cref{fig:colorNoT}: |\usepackage[color,noT]{kinshipsymbols}| version.
 %       A straightforward combination of the |color| and |noT| options described above.
@@ -919,6 +920,20 @@
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
 \newcommand{\ktHatNew}[1][k]{\ktHatNamed[#1]{new}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ktHatNewMin}
+%   \ktHatNewMin:
+%   Estimator of the limit of the minimum value of the expectation of \ktHatNew across all pairs of individuals.
+%   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
+%    \begin{macrocode}
+\newcommand{\ktHatNewMin}{%
+  \ensuremath{%
+    \hat{\varphi}_{\text{min}}\kinshipsymbols@Ts{new}%
+  }%
+  \xspace%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
