@@ -36,3 +36,6 @@
 * Created this NEWS.md file, added all previous history (from git log)
 * Added installation instructions in README.md
 
+# 2020-05-14 - kinshipsymbols 1.02
+
+* Added `\ktHatNewMin` symbpl
