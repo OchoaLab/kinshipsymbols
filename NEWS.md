@@ -38,4 +38,9 @@
 
 # 2020-05-14 - kinshipsymbols 1.02
 
-* Added `\ktHatNewMin` symbpl
+* Added `\ktHatNewMin` symbol
+
+# 2021-06-02 - kinshipsymbols 1.03
+
+* Added unnamed `\FstHat`, `\ktHat`, and `\ftHat` symbols (without estimator name)
+

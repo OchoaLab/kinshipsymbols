@@ -180,6 +180,12 @@
 \newcommand{\toasNM}{%
   \xrightarrow[n,m \rightarrow \infty]{\text{a.s.}}%
 }%
+\newcommand{\FstHat}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}%
+  }%
+  \xspace%
+}%
 \newcommand{\FstHatNamed}[1]{%
   \ensuremath{%
     \hat{F}_{\text{ST}}^{\text{#1}}%
@@ -190,6 +196,12 @@
 \newcommand{\FstHatWc}{\FstHatNamed{WC}}
 \newcommand{\FstHatHudson}{\FstHatNamed{Hudson}}
 \newcommand{\FstHatHudsonK}{\FstHatNamed{HudsonK}}
+\newcommand{\ktHat}[1][k]{%
+  \ensuremath{%
+    \hat{\varphi}_{j#1}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
 \newcommand{\ktHatNamed}[2][k]{%
   \ensuremath{%
     \hat{\varphi}_{j#1}\kinshipsymbols@Ts{#2}%
@@ -197,6 +209,12 @@
   \xspace%
 }%
 \newcommand{\ktHatStd}[1][k]{\ktHatNamed[#1]{std}}
+\newcommand{\ftHat}[1][j]{%
+  \ensuremath{%
+    \hat{f}_{#1}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
 \newcommand{\ftHatNamed}[2][j]{%
   \ensuremath{%
     \hat{f}_{#1}\kinshipsymbols@Ts{#2}%

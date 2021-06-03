@@ -37,7 +37,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{347}
+% \CheckSum{366}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -59,6 +59,7 @@
 %   \changes{v1.00}{2019/02/01}{Initial version}
 %   \changes{v1.01}{2020/03/05}{Added NEWS, README, and symbols \Ajk, \AAvgHat, and *Std versions}
 %   \changes{v1.02}{2020/05/14}{Added \ktHatNewMin symbol}
+%   \changes{v1.03}{2021/06/02}{Added unnamed \FstHat, \ktHat, and \ftHat symbols (without estimator name)}
 %
 % \GetFileInfo{kinshipsymbols.sty}
 %
@@ -145,6 +146,8 @@
 %         \hline
 %         Command & Symbol & Description \\
 %         \hline
+%         |\ktHat| & \ktHat & Unnamed kinship estimator \\
+%         |\ftHat| & \ftHat & Unnamed inbreeding estimator \\
 %         |\ktHatNamed{example}| & \ktHatNamed{example} & Named kinship estimator \\
 %         |\ftHatNamed{example}| & \ftHatNamed{example} & Named inbreeding estimator \\
 %         \hline
@@ -173,6 +176,7 @@
 %         Command & Symbol & Description \\
 %         \hline
 %         |\FstHatSample| & \FstHatSample & Sample \Fst estimator (one locus) \\
+%         |\FstHat| & \FstHat & Unnamed \Fst estimator \\
 %         |\FstHatNamed{example}| & \FstHatNamed{example} & Named \Fst estimator \\
 %         \hline
 %         |\FstHatWc| & \FstHatWc & Weir-Cockerham \Fst estimator \\
@@ -269,7 +273,7 @@
 %     \end{itemize}
 % \item \cref{fig:noT}: |\usepackage[noT]{kinshipsymbols}| version.
 %       Same as the vanilla version except the ancestral population $T$ is omitted in the superscript of several symbols
-%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHatStd, \ftHatStd, \ftHatStdII, \ftHatStdIII, \ktHatNew, \ktHatNewMin, \ftHatNew, and \mav).
+%       (\pit, \pith, \ft, \fs, \kt, \ks, \ktHat, \ftHat, \ktHatStd, \ftHatStd, \ftHatStdII, \ftHatStdIII, \ktHatNew, \ktHatNewMin, \ftHatNew, and \mav).
 %       This option is provided to simplify the heavy notation in a context where $T$ is implicit or fixed.
 % \item \cref{fig:colorNoT}: |\usepackage[color,noT]{kinshipsymbols}| version.
 %       A straightforward combination of the |color| and |noT| options described above.
@@ -762,6 +766,19 @@
 %
 % \subsection{\Fst estimators for independent subpopulations}
 %
+% \begin{macro}{\FstHat}
+%   \FstHat:
+%   Unnamed \Fst estimator.
+%    \begin{macrocode}
+\newcommand{\FstHat}{%
+  \ensuremath{%
+    \hat{F}_{\text{ST}}%
+  }%
+  \xspace%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\FstHatNamed}
 %   \FstHatNamed{example}:
 %   Base command for a named \Fst estimator.
@@ -810,6 +827,21 @@
 %
 % \subsection{Estimators based on the standard kinship}
 %
+% \begin{macro}{\ktHat}
+%   \ktHat:
+%   An unnamed kinship estimator for individuals $j$ and $k$ (default).
+%   The optional argument allows setting another second individual (|\ktHat[l]| gives \ktHat[l] for a second individual $l$).
+%   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
+%    \begin{macrocode}
+\newcommand{\ktHat}[1][k]{%
+  \ensuremath{%
+    \hat{\varphi}_{j#1}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\ktHatNamed}
 %   \ktHatNamed{example}:
 %   A generic named kinship estimator for individuals $j$ and $k$ (default).
@@ -833,6 +865,21 @@
 %   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
 %    \begin{macrocode}
 \newcommand{\ktHatStd}[1][k]{\ktHatNamed[#1]{std}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ftHat}
+%   \ftHat:
+%   Unnamed inbreeding coefficient estimator for individual $j$ (default).
+%   The optional argument allows setting another individual (|\ftHat[k]| gives \ftHat[k] for individual $k$).
+%   The estimated parameter has a value that depends on the ancestral population $T$, which is by default denoted in the superscript, but which gets omitted if the package option |noT| is passed.
+%    \begin{macrocode}
+\newcommand{\ftHat}[1][j]{%
+  \ensuremath{%
+    \hat{f}_{#1}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
