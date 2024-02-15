@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{kinshipsymbols}
-   [2020/05/14 v1.02 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
+   [2024/02/15 v1.04 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
 \RequirePackage{amsmath}
 \RequirePackage{xspace}
 \RequirePackage{xcolor}
@@ -171,8 +171,8 @@
   }%
   \xspace%
 }%
-\newcommand{\toas}{%
-  \xrightarrow[m \rightarrow \infty]{\text{a.s.}}
+\newcommand{\toas}[1][m]{%
+  \xrightarrow[#1 \rightarrow \infty]{\text{a.s.}}
 }%
 \newcommand{\toN}[1][n]{%
   \xrightarrow[#1 \rightarrow \infty]{}%

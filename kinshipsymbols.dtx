@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 % 
-% Copyright (C) 2019 by Alejandro Ochoa <https://ochoalab.github.io/>
+% Copyright (C) 2019-2024 by Alejandro Ochoa <https://ochoalab.github.io/>
 %
 % This file may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -21,7 +21,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{kinshipsymbols}
-%<package>   [2020/05/14 v1.02 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
+%<package>   [2024/02/15 v1.04 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{kinshipsymbols}
@@ -60,6 +60,7 @@
 %   \changes{v1.01}{2020/03/05}{Added NEWS, README, and symbols \Ajk, \AAvgHat, and *Std versions}
 %   \changes{v1.02}{2020/05/14}{Added \ktHatNewMin symbol}
 %   \changes{v1.03}{2021/06/02}{Added unnamed \FstHat, \ktHat, and \ftHat symbols (without estimator name)}
+%   \changes{v1.04}{2024/02/15}{Added option to change variable name in $\toas$}
 %
 % \GetFileInfo{kinshipsymbols.sty}
 %
@@ -736,9 +737,10 @@
 % \begin{macro}{\toas}
 %   $\toas$:
 %   Almost sure convergence as $m$ goes to $\infty$.
+%   Optional argument changes the variable name (|$\toas[n]$| gives $\toas[n]$).
 %    \begin{macrocode}
-\newcommand{\toas}{%
-  \xrightarrow[m \rightarrow \infty]{\text{a.s.}}
+\newcommand{\toas}[1][m]{%
+  \xrightarrow[#1 \rightarrow \infty]{\text{a.s.}}
 }%
 %    \end{macrocode}
 % \end{macro}

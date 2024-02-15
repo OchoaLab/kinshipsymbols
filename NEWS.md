@@ -44,3 +44,6 @@
 
 * Added unnamed `\FstHat`, `\ktHat`, and `\ftHat` symbols (without estimator name)
 
+# 2024-02-15 - kinshipsymbols 1.04
+
+* Added option to change variable name in `\toas`

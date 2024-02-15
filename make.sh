@@ -32,3 +32,4 @@ rm *.ind
 rm *.log
 rm *.toc
 rm *.out
+rm *.hd
