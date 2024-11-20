@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{kinshipsymbols}
-   [2024/02/15 v1.04 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
+   [2024/11/20 v1.05 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
 \RequirePackage{amsmath}
 \RequirePackage{xspace}
 \RequirePackage{xcolor}
@@ -62,16 +62,32 @@
   }%
   \xspace%
 }%
-\newcommand{\pit}{%
+\newcommand{\x}[1][i]{%
   \ensuremath{%
-    p_i\kinshipsymbols@T%
+    \ifcolor \textcolor{genColor}{ \fi%
+      \mathbf{x}_{#1}%
+    \ifcolor } \fi%
   }%
   \xspace%
 }%
-\newcommand{\pith}{%
+\newcommand{\X}{%
+  \ensuremath{%
+    \ifcolor \textcolor{genColor}{ \fi%
+      \mathbf{X}%
+    \ifcolor } \fi%
+  }%
+  \xspace%
+}%
+\newcommand{\pit}[1][i]{%
+  \ensuremath{%
+    p_{#1}\kinshipsymbols@T%
+  }%
+  \xspace%
+}%
+\newcommand{\pith}[1][i]{%
   \ensuremath{%
     \ifcolor \textcolor{pithColor}{ \fi%
-      \hat{p}_i\kinshipsymbols@T%
+      \hat{p}_{#1}\kinshipsymbols@T%
     \ifcolor } \fi%
   }%
   \xspace%
@@ -122,6 +138,14 @@
   \ensuremath{%
     \ifcolor \textcolor{kinColor}{ \fi%
       \varphi_{j#1}\kinshipsymbols@T%
+    \ifcolor } \fi%
+  }%
+  \xspace%
+}%
+\newcommand{\kinMat}{%
+  \ensuremath{%
+    \ifcolor \textcolor{kinColor}{ \fi%
+      \boldsymbol{\Phi}\kinshipsymbols@T%
     \ifcolor } \fi%
   }%
   \xspace%
@@ -282,6 +306,18 @@
   }%
   \xspace%
 }%
+\newcommand{\srmsdp}{%
+  \ensuremath{%
+    \text{SRMSD}_p%
+  }%
+  \xspace%
+}%
+\newcommand{\aucpr}{%
+  \ensuremath{%
+    \text{AUC}_\text{PR}%
+  }%
+  \xspace%
+}%
 \makeatletter
 \@ifclassloaded{beamer}{%
   \patchcmd\@cline
@@ -311,11 +347,7 @@
     & \multicolumn{1}{|l|}{ } \\%
     \cline{2-2}%
     & \\%
-    & $\mathbf{
-      \ifcolor \textcolor{genColor}{ \fi%
-      X
-      \ifcolor } \fi%
-      }$ \\%
+    & \X \\%
   \end{tabular}%
 }%
 \endinput
