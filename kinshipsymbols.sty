@@ -26,7 +26,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{kinshipsymbols}
-   [2024/11/20 v1.05 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
+   [2025/12/11 v1.06 Math symbols for statistical genetics models, particularly kinship coefficients, including options like colors and notation simplifications]
 \RequirePackage{amsmath}
 \RequirePackage{xspace}
 \RequirePackage{xcolor}
@@ -229,6 +229,12 @@
 \newcommand{\ktHatNamed}[2][k]{%
   \ensuremath{%
     \hat{\varphi}_{j#1}\kinshipsymbols@Ts{#2}%
+  }%
+  \xspace%
+}%
+\newcommand{\kinMatHat}{%
+  \ensuremath{%
+    \boldsymbol{\hat{\Phi}}\kinshipsymbols@T%
   }%
   \xspace%
 }%
